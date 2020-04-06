@@ -27,5 +27,33 @@ http.listen(app.get("port"), function() {
 app.post("/Vino", function(req, res) {
 	let css1=req.body.card1;
 	let css2=req.body.card2;
-	res.send("Hola")
+	let bin=Similitud(css1, css2);
+	res.send(bin)
 });
+
+function Similitud(data, data2){
+	let mensaje = ''
+    if(data.length != 16 || data2.length != 16) {
+        mensaje = 'Comprueba que las dos tarjetas tengan 16 digitos'
+    }
+	let primerGrupo = [data.substring(0, 6), data2.substring(0, 6)]
+    if (primerGrupo[0] != primerGrupo[1]) {
+        mensaje = 'Revisa que los BIN de ambas tarjetas sean totalmente iguales'
+    }
+    if (!mensaje) {
+        let segundoGrupo = [data.substring(6, 16), data2.substring(6, 16)]
+        let tercerGrupo = { ext1: segundoGrupo[0].split(''), ext2: segundoGrupo[1].split('') }
+        let binExt = primerGrupo[0]
+        for (let i = 0; i < 10; i++) {
+            if (tercerGrupo.ext1[i] == tercerGrupo.ext2[i]) {
+                binExt += tercerGrupo.ext1[i]
+            }
+            else {
+                binExt += 'x'
+            }
+        }
+		return('Este es tu BIN extrapolado: \n\r'+binExt)
+    }else{
+        return('Upps! , ocurrio algun error: '+mensaje)
+    }
+}
