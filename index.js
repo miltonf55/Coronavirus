@@ -33,7 +33,7 @@ app.post("/Vino", function(req, res) {
         switch (alg) {
             case "sim":
                     bin=similitud(css1, css2);
-                    res.send(bin);
+                    res.send('Este es tu BIN extrapolado: \n\r'+bin);
                 break;
             case "ava":
                     bin=avanzada(css1, css2);
@@ -41,7 +41,7 @@ app.post("/Vino", function(req, res) {
                 break;
             case "priv":
                     bin=privado(css1, css2);
-                    res.send(bin);
+                    res.send('Este es tu BIN extrapolado: \n\r'+bin);
                 break;
             default:
                     bin="Something is clearly wrong";
@@ -73,7 +73,7 @@ function similitud(data, data2){
                 binExt += 'x'
             }
         }
-		return('Este es tu BIN extrapolado: \n\r'+binExt)
+		return(binExt)
     }else{
         return(mensaje);
     }
@@ -125,7 +125,40 @@ function avanzada(data, data2) {
     
 }
 function privado(data, data2) {
-    return("En construcción V:");
+    let mensaje = '';
+	let primerGrupo = [data.substring(0, 6), data2.substring(0, 6)];
+    if (primerGrupo[0] != primerGrupo[1]) {
+        mensaje = 'Revisa que los BIN de ambas tarjetas sean totalmente iguales';
+    }
+    if (!mensaje) {
+        let G1 = [ data.substring(0,8) , data.substring(8,16) ];
+        let G2 = [ data2.substring(0,8) , data2.substring(8,16) ];
+        let j=8;
+        let H=[7];
+        for (let i = 0; i < 8; i++) {
+            H[i]=(parseInt(data2[i])*parseInt(data2[j])).toString();
+            j++;
+        }
+        let T="";
+        for (let i = 0; i < 8; i++) {
+            T=T+H[i];
+        }
+        G2[1]=T.substring(0,8);
+        let b=G2[0]+G2[1];
+        let b2=similitud(data, b);
+        let b3=b2.split("");
+        if (b3[15]=="x") {
+            b3[15]="1";
+        }
+        b2="";
+        for (let i = 0; i < 16; i++) {
+            b2+=b3[i];
+        }
+        return(b2);
+    }
+    else{
+        return(mensaje);
+    }
 }
 function num(checkStr){
 	var checkOk="1234567890";
