@@ -1,0 +1,29 @@
+{
+  "name": "coronavirus",
+  "version": "1.0.0",
+  "description": "Vinos baratos",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/miltonf55/Coronavirus.git"
+  },
+  "keywords": [
+    "Vino"
+  ],
+  "author": "Akatsuki",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/miltonf55/Coronavirus/issues"
+  },
+  "homepage": "https://github.com/miltonf55/Coronavirus#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "http": "0.0.1-security",
+    "nodemon": "^2.0.2"
+  }
+}

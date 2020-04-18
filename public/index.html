@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vinos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div class="col">
+        </div>
+        <div class="col-6">    
+            <h1>Vinos Baratos (Titulo en construcción)</h1>
+            <form action="Vino" method="post" class="form-group">
+                <input type="text" maxlength="16" name="card1" placeholder="Card 1" class="form-control" required>
+                <br>
+                <input type="text" maxlength="16" name="card2" placeholder="Card 2" class="form-control" required>
+                <br>
+                <label for="alg">Escoge un algoritmo:</label>
+                <select id="alg" name="alg" class="form-control">
+                    <option value="sim">Similitud</option>
+                    <option value="ava">Avanzada</option>
+                    <option value="priv">Privado</option>
+                </select>
+                <br>
+                <button class="btn btn-outline-success">Aceptar</button>
+            </form>
+        </div>
+        <div class="col">
+        </div>
+    </div>
+
+</body>
+</html>
